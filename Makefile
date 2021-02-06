@@ -23,6 +23,7 @@ CFLAGS   = $(WARNINGS) $(CFLAGS_OPTIM) -Wall $(CFLAGS_DEBUG) $(CFLAGS_NO_CYGWIN_
 #CFLAGS  += -std=c11
 #CFLAGS  += -std=c99
 CPPFLAGS   = $(CFLAGS) -fno-rtti
+CPPFLAGS  += -std=c++11
 
 #LDFLAGS_STRIP_DEVUG_INFO = -s
 # LDFLAGS  = -s  $(CFLAGS_NO_CYGWIN_DLL) -lcrypto -lssl #-lsocket -lnsl
