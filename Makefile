@@ -58,11 +58,11 @@ CPPFILES+= diadat_channel.cpp
 #CPPFILES+= debug.cpp
 #CPPFILES+= osm_xml.cpp
 #CFILES    = $(TARGET).c
-#CFILES   += debug.c
+CFILES   += debug.c
 #CFILES   += main.c
 #CFILES   += queue.c
 
-SUBDIRS := DiaDat
+SUBDIRS := DiaDat debug
 
 VPATH := $(SUBDIRS) $(TARGET_DIR)
 OBJECTS = $(CPPFILES:.cpp=.o) $(CFILES:.c=.o)
