@@ -21,6 +21,8 @@ int main(int argc, const char **argv)
       } catch (const char* msg) {
           /* good result - ok */
       }
+      file->createChannel("sin_s8", e_DiaDat_ChannelType_s8);
+      file->createChannel("cos_s8", e_DiaDat_ChannelType_s8);
   } catch (const char* msg) {
       std::cerr << msg << std::endl;
   }
