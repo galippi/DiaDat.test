@@ -1,0 +1,6 @@
+[submodule "debug"]
+	path = debug
+	url = S:\\git\\debug
+[submodule "DiaDat"]
+	path = DiaDat
+	url = S:\\git\\DiaDat.git
