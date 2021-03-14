@@ -12,8 +12,10 @@ int main(int argc, const char **argv)
   try {
       DiaDat_File *file = new DiaDat_File();
       file->create("demo1.dat");
-      file->createChannel("sin_u8", e_DiaDat_ChannelType_u8);
-      file->createChannel("cos_u8", e_DiaDat_ChannelType_u8);
+      uint8_t sin_u8;
+      file->createChannel("sin_u8", e_DiaDat_ChannelType_u8, &sin_u8);
+      uint8_t cos_u8;
+      file->createChannel("cos_u8", e_DiaDat_ChannelType_u8, &cos_u8);
       try {
           file->createChannel("sin_u8", e_DiaDat_ChannelType_u8);
           std::cerr << "Error - duplicated channel is created!" << std::endl;
@@ -21,8 +23,13 @@ int main(int argc, const char **argv)
       } catch (const char* msg) {
           /* good result - ok */
       }
-      file->createChannel("sin_s8", e_DiaDat_ChannelType_s8);
-      file->createChannel("cos_s8", e_DiaDat_ChannelType_s8);
+      int8_t sin_s8;
+      file->createChannel("sin_s8", e_DiaDat_ChannelType_s8, &sin_s8);
+      int8_t cos_s8;
+      file->createChannel("cos_s8", e_DiaDat_ChannelType_s8, &cos_s8);
+      file->set_dT(0.01);
+      file->step();
+      file->close();
   } catch (const char* msg) {
       std::cerr << msg << std::endl;
   }
