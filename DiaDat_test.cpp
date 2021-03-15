@@ -30,6 +30,9 @@ int main(int argc, const char **argv)
       file->set_dT(0.01);
       file->step();
       file->close();
+
+      file = new DiaDat_File("demo1.dat");
+      file->close();
   } catch (const char* msg) {
       std::cerr << msg << std::endl;
   }
