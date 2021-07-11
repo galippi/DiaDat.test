@@ -1,10 +1,10 @@
 @echo off
+cls
 rem path=C:\Programs\cygwin\bin;%PATH%
-path=C:\Programok\cygwin\bin;%PATH%
-PATH=C:\Programok\cygwin64\bin\;%PATH%
+::path=C:\Programok\cygwin\bin;%PATH%
+@PATH=C:\Programok\cygwin64\bin\;%PATH%
 rem set TMPDIR=c:\tmp
-set WORK_ROOT=%CD%
-set WXDIR=/wxMSW
+@set WORK_ROOT=%CD%
 
 ::C:
 ::chdir C:\Programs\cygwin\bin
