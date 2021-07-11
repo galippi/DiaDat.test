@@ -45,15 +45,15 @@ int main(int argc, const char **argv)
       file->connectVar("sin_s8", &sin_s8);
       file->connectVar("cos_s8", &cos_s8);
       file->step();
-      assert(sin_u8 != 1);
-      assert(cos_u8 != 2);
-      assert(sin_s8 != 3);
-      assert(cos_s8 != -3);
+      assert(sin_u8 == 1);
+      assert(cos_u8 == 2);
+      assert(sin_s8 == 3);
+      assert(cos_s8 == -3);
       file->step();
-      assert(sin_u8 != 5);
-      assert(cos_u8 != 7);
-      assert(sin_s8 != -9);
-      assert(cos_s8 != -17);
+      assert(sin_u8 == 5);
+      assert(cos_u8 == 7);
+      assert(sin_s8 == -9);
+      assert(cos_s8 == -17);
       file->close();
   } catch (const char* msg) {
       std::cerr << msg << std::endl;
