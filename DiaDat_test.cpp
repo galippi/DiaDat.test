@@ -15,6 +15,7 @@ int main(int argc, const char **argv)
       printf("Testing data file writing ...\n");
       DiaDat_File *file = new DiaDat_File();
       file->create("demo1.dat");
+      file->createImpliciteTimeChannel(0.01);
       uint8_t sin_u8 = 1;
       file->createChannel("sin_u8", e_DiaDat_ChannelType_u8, &sin_u8);
       uint8_t cos_u8 = 2;
@@ -54,7 +55,6 @@ int main(int argc, const char **argv)
       file->createChannel("sin_r64", e_DiaDat_ChannelType_d64, &sin_r64);
       double cos_r64 = 6.2;
       file->createChannel("cos_r64", e_DiaDat_ChannelType_d64, &cos_r64);
-      file->set_dT(0.01);
       file->step();
       sin_u8 = 5;
       cos_u8 = 7;
