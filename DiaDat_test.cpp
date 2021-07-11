@@ -33,6 +33,10 @@ int main(int argc, const char **argv)
       file->createChannel("sin_s16", e_DiaDat_ChannelType_s16, &sin_s16);
       int16_t cos_s16 = -259;
       file->createChannel("cos_s16", e_DiaDat_ChannelType_s16, &cos_s16);
+      uint16_t sin_u16 = 333;
+      file->createChannel("sin_u16", e_DiaDat_ChannelType_u16, &sin_u16);
+      uint16_t cos_u16 = 444;
+      file->createChannel("cos_u16", e_DiaDat_ChannelType_u16, &cos_u16);
       file->set_dT(0.01);
       file->step();
       sin_u8 = 5;
@@ -41,6 +45,8 @@ int main(int argc, const char **argv)
       cos_s8 = -17;
       sin_s16 = -1000;
       cos_s16 = 2222;
+      sin_u16 = 555;
+      cos_u16 = 666;
       file->step();
       file->close();
 
@@ -52,6 +58,8 @@ int main(int argc, const char **argv)
       file->connectVar("cos_s8", &cos_s8);
       file->connectVar("sin_s16", &sin_s16);
       file->connectVar("cos_s16", &cos_s16);
+      file->connectVar("sin_u16", &sin_u16);
+      file->connectVar("cos_u16", &cos_u16);
       file->step();
       assert(sin_u8 == 1);
       assert(cos_u8 == 2);
@@ -59,6 +67,8 @@ int main(int argc, const char **argv)
       assert(cos_s8 == -3);
       assert(sin_s16 == 258);
       assert(cos_s16 == -259);
+      assert(sin_u16 == 333);
+      assert(cos_u16 == 444);
       file->step();
       assert(sin_u8 == 5);
       assert(cos_u8 == 7);
@@ -66,6 +76,8 @@ int main(int argc, const char **argv)
       assert(cos_s8 == -17);
       assert(sin_s16 == -1000);
       assert(cos_s16 == 2222);
+      assert(sin_u16 == 555);
+      assert(cos_u16 == 666);
       file->close();
   } catch (const char* msg) {
       std::cerr << msg << std::endl;
