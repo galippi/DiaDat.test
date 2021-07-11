@@ -1,5 +1,9 @@
 obj/*
+*.bak
 _cmd.bat
 build.bat
 _t.bat
+_gitk.bat
 *.stackdump
+TestData/*
+demo1.*
