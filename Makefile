@@ -3,7 +3,7 @@
 CFLAGS_DEBUG= -gdwarf-2
 #CFLAGS_DEBUG= -gdwarf -g3
 CFLAGS_DEBUG += -g3
-CFLAGS_DEBUG += -O2
+#CFLAGS_DEBUG += -O2
 
 WARNINGS = -Wall -Wextra
 WARNINGS += -Wwrite-strings -Wcast-qual -Wpointer-arith -Wsign-compare
@@ -22,7 +22,8 @@ CFLAGS   = $(WARNINGS) $(CFLAGS_OPTIM) -Wall $(CFLAGS_DEBUG) $(CFLAGS_NO_CYGWIN_
 #CFLAGS  += -I/usr/include/SDL
 #CFLAGS  += -std=c11
 #CFLAGS  += -std=c99
-CPPFLAGS   = $(CFLAGS) -fno-rtti
+CPPFLAGS   = $(CFLAGS)
+#CPPFLAGS  += -fno-rtti
 CPPFLAGS  += -std=c++11
 
 #LDFLAGS_STRIP_DEVUG_INFO = -s
@@ -55,7 +56,7 @@ TARGET_DIR=obj/
 CPPFILES+= DiaDat_test.cpp
 CPPFILES+= diadat_file.cpp
 CPPFILES+= diadat_channel.cpp
-#CPPFILES+= debug.cpp
+CPPFILES+= DiaDat_DataFile.cpp
 #CPPFILES+= osm_xml.cpp
 #CFILES    = $(TARGET).c
 CFILES   += debug.c
