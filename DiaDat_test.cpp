@@ -12,19 +12,36 @@ static void test_sin_s8(void)
 {
   try {
       printf("Testing data file writing ...\n");
-      DiaDat_File *file = new DiaDat_File();
-      file->create("demo2.dat");
+      DiaDat_File *file = new DiaDat_File("demo2.dat", e_DiaDatFileType_Write);
       file->createImpliciteTimeChannel(0.01);
       int8_t sin_s8;
       int16_t sin_s16;
       file->createChannel("sin_s8", e_DiaDat_ChannelType_s8, &sin_s8);
       file->createChannel("sin_s16", e_DiaDat_ChannelType_s16, &sin_s16);
+      int32_t sin_s32;
+      file->createChannel("sin_s32", &sin_s32);
+      uint8_t sin_u8;
+      file->createChannel("sin_u8", &sin_u8);
+      uint8_t sin_u16;
+      file->createChannel("sin_u16", &sin_u16);
+      uint8_t sin_u32;
+      file->createChannel("sin_u32", &sin_u32);
+      double sin_r64;
+      file->createChannel("sin_r64", &sin_r64);
+      double sin_r32;
+      file->createChannel("sin_r32", &sin_r32);
       int i;
       file->createChannel("i", e_DiaDat_ChannelType_s32, &i);
       for (i = 0; i < 2000; i++)
       {
           sin_s8 = (int8_t)(sin(i * 2 * 3.1415/23.23) * 111);
+          sin_u8 = (uint8_t)((sin(i * 2 * 3.1415/24.23) + 1) * 111);
           sin_s16 = (int16_t)(sin(i * 2 * 3.1415/34.23) * 3333);
+          sin_u16 = (uint16_t)((sin(i * 2 * 3.1415/25.23) + 1) * 3333);
+          sin_s32 = (int32_t)(sin(i * 2 * 3.1415/29.23) * 77777);
+          sin_u32 = (uint32_t)((sin(i * 2 * 3.1415/26.23) + 1) * 77777);
+          sin_r64 = sin(i * 2 * 3.1415/27.23) * i / 200;
+          sin_r32 = sin(i * 2 * 3.1415/28.23) * (2000 - i) / 150;
           file->step();
       }
       file->close();
