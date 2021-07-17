@@ -8,6 +8,33 @@
 
 int debug_level_param = 99;
 
+static void test_sin_s8(void)
+{
+  try {
+      printf("Testing data file writing ...\n");
+      DiaDat_File *file = new DiaDat_File();
+      file->create("demo2.dat");
+      file->createImpliciteTimeChannel(0.01);
+      int8_t sin_s8;
+      int16_t sin_s16;
+      file->createChannel("sin_s8", e_DiaDat_ChannelType_s8, &sin_s8);
+      file->createChannel("sin_s16", e_DiaDat_ChannelType_s16, &sin_s16);
+      int i;
+      file->createChannel("i", e_DiaDat_ChannelType_s32, &i);
+      for (i = 0; i < 2000; i++)
+      {
+          sin_s8 = (int8_t)(sin(i * 2 * 3.1415/23.23) * 111);
+          sin_s16 = (int16_t)(sin(i * 2 * 3.1415/34.23) * 3333);
+          file->step();
+      }
+      file->close();
+  } catch (const char* msg) {
+      std::cerr << msg << std::endl;
+  } catch(std::exception& e) {
+      std::cerr << "Exception: " << e.what() << std::endl;
+  }
+}
+
 int main(int argc, const char **argv)
 {
   printf("argc=%d argv[0]=%s!\n", argc, argv[0]);
@@ -133,6 +160,7 @@ int main(int argc, const char **argv)
   } catch(std::exception& e) {
       std::cerr << "Exception: " << e.what() << std::endl;
   }
+  test_sin_s8();
   printf("Testing is done!\n");
   return 0;
 }
