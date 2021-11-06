@@ -22,9 +22,9 @@ static void test_sin_s8(void)
       file->createChannel("sin_s32", &sin_s32);
       uint8_t sin_u8;
       file->createChannel("sin_u8", &sin_u8);
-      uint8_t sin_u16;
+      uint16_t sin_u16;
       file->createChannel("sin_u16", &sin_u16);
-      uint8_t sin_u32;
+      uint32_t sin_u32;
       file->createChannel("sin_u32", &sin_u32);
       double sin_r64;
       file->createChannel("sin_r64", &sin_r64);
@@ -42,6 +42,28 @@ static void test_sin_s8(void)
           sin_u32 = (uint32_t)((sin(i * 2 * 3.1415/26.23) + 1) * 77777);
           sin_r64 = sin(i * 2 * 3.1415/27.23) * i / 200;
           sin_r32 = sin(i * 2 * 3.1415/28.23) * (2000 - i) / 150;
+          file->step();
+      }
+      file->close();
+  } catch (const char* msg) {
+      std::cerr << msg << std::endl;
+  } catch(std::exception& e) {
+      std::cerr << "Exception: " << e.what() << std::endl;
+  }
+}
+
+static void test_sin_u8(void)
+{
+  try {
+      printf("Testing data file writing ...\n");
+      DiaDat_File *file = new DiaDat_File("demo3.dat", e_DiaDatFileType_Write);
+      file->createImpliciteTimeChannel(0.01);
+      uint8_t sin_u8;
+      file->createChannel("sin_u8", &sin_u8);
+      int i;
+      for (i = 0; i < 2000; i++)
+      {
+          sin_u8 = (uint8_t)((sin(i * 2 * 3.1415/24.23) + 1) * 111);
           file->step();
       }
       file->close();
@@ -178,6 +200,7 @@ int main(int argc, const char **argv)
       std::cerr << "Exception: " << e.what() << std::endl;
   }
   test_sin_s8();
+  test_sin_u8();
   printf("Testing is done!\n");
   return 0;
 }
